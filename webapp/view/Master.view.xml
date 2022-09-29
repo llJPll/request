@@ -1,0 +1,254 @@
+<mvc:View controllerName="ns.indra.orderrequest.controller.Master" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:layout="sap.ui.layout" xmlns:uxap="sap.uxap" xmlns:cm="sap.suite.ui.commons" xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns:card="sap.f.cards">
+    <SplitApp id="idSplitApp" initialDetail="detail" initialMaster="master">
+        <detailPages>
+            <Page id="idDetailEmpty" backgroundDesign="Solid">
+                <MessagePage description="" text="{i18n>message}" id="idMsgPageEmpty" showHeader="false" icon="sap-icon://open-folder" />
+            </Page>
+            <Page id="idDetaiSolpedCel" visible="true" showNavButton="true" navButtonPress="onPressMasterBack" enableScrolling="true">
+                <Panel expandable="true" expanded="true" width="auto" class="sapUiResponsiveMargin">
+                    <content>
+                        <FlexBox alignItems="Center" direction="Column">
+                            <Label text="Administrador de negocios" design="Bold" class="clsTitulo" />
+                            <Text text="45000916354" class="clsLetraDet1" />
+                            <Label class="clsTextDesc" id="idlabel" displayOnly="true" wrapping="true" text="Labels are used as titles [long test word] forsinglecontrolsorgroups of controls. Label appearance can be influenced by properties" />
+                        </FlexBox>
+                        <FlexBox class="columns clsDetalleCab" alignItems="Center" justifyContent="Center">
+                            <FlexBox direction="Column" alignItems="Center" width="33%">
+                                <Label text="Sociedad: " design="Bold" class="clsLetra"/>
+                                <Label text="PE01" class="clsLetra"/>
+                            </FlexBox>
+                            <FlexBox direction="Column" alignItems="Center" width="33%">
+                                <Label text="Fecha: " design="Bold" class="clsLetra"/>
+                                <Label text="25/07/2016" class="clsLetra"/>
+                            </FlexBox>
+                            <FlexBox direction="Column" alignItems="Center" width="33%">
+                                <Label text="Solicitante: " design="Bold" class="clsLetra"/>
+                                <Label text="Oper Canales" class="clsLetra" />
+                            </FlexBox>
+                        </FlexBox>
+                        <layout:VerticalLayout class="sapUiContentPadding" width="100%">
+                            <Text text="{i18n>solInfo}" class="sapUiTinyMarginTop" />
+                            <TextArea id="textAreaWithBinding2" value="" showExceededText="true" maxLength="200" width="100%" rows="4" />
+                            <Button id="idBtnSolInfo" icon="sap-icon://paper-plane" type="Negative" text="{i18n>solInfo}" press="onSolicitarInfo" />
+                        </layout:VerticalLayout>
+                    </content>
+                </Panel>
+                    <List id="idListPosSolpedCel" multiSelectMode="ClearAll" mode="MultiSelect" items="{path: '/'}" class="clsListPos" includeItemInSelection="false" headerText="{i18n>posiciones}">
+                        <items>
+                            <ObjectListItem
+                                id="idObjListPos"
+                                title="Nro. Pos: {pos}"
+                                type="Navigation"
+                                press="onDetallePos"
+                                number="{
+                                            parts:[{path:'importe'},{path:'currency'}],
+                                            type: 'sap.ui.model.type.Currency',
+                                            formatOptions: {showMeasure: false}
+                                        }"
+                                numberUnit="{currency}"
+                            >
+                                <firstStatus>
+                                    <ObjectStatus id="idObjStatusPos" text="{fecha}" />
+                                </firstStatus>
+                            </ObjectListItem>
+                        </items>
+                    </List>
+                <footer>
+                    <OverflowToolbar id="idOfToolbarPos">
+                        <ToolbarSpacer id="idToolSpacerPos" />
+                        <Button id="idBtnLiberarPo" icon="sap-icon://flag" type="Negative" text="{i18n>liberar}" press="onLiberar" />
+                    </OverflowToolbar>
+                </footer>
+            </Page>
+            <!-- page para el segundo detalle donde se ve la informacion total de la posicion para celular-->
+            <Page id="idDetail2SolpedCel" visible="true" showNavButton="true" navButtonPress="onPressNavToDetail">
+                <Panel expandable="false" expanded="true" width="auto" class="sapUiResponsiveMargin" height="98%">
+                    <FlexBox class="columns" alignItems="Center" justifyContent="Center" height="90px">
+                        <FlexBox direction="Column" alignItems="Center" width="50%">
+                            <Label text="Posicion 10" design="Bold" class="clsTitulo" />
+                        </FlexBox>
+                        <FlexBox direction="Column" alignItems="Center" width="49%">
+                            <Label text="PEN 78395.49" design="Bold" class="clsLetra" />
+                        </FlexBox>
+                    </FlexBox>
+                    <FlexBox class="columns" alignItems="Center" justifyContent="Center" height="90px">
+                        <FlexBox direction="Column" alignItems="Center" width="50%">
+                            <Label text="Fecha de solicitud: " design="Bold" class="clsLetra" />
+                            <Label text="26.09.2022" class="clsLetra" />
+                        </FlexBox>
+                        <FlexBox direction="Column" alignItems="Center" width="49%">
+                            <Label text="Material: " design="Bold" class="clsLetra" />
+                            <Label text="349587656" class="clsLetra" />
+                        </FlexBox>
+                    </FlexBox>
+                    <FlexBox class="columns" alignItems="Center" justifyContent="Center" height="90px">
+                        <FlexBox direction="Column" alignItems="Center" width="50%">
+                            <Label text="Grupo de articulos: " design="Bold" />
+                            <Label text="Servicios Administrativos" class="clsLetra" />
+                        </FlexBox>
+                        <FlexBox direction="Column" alignItems="Center" width="49%">
+                            <Label text="Cantidad U. Medida: " design="Bold" class="clsLetra" />
+                            <Label text="1000 SRV" class="clsLetra" />
+                        </FlexBox>
+                    </FlexBox>
+                    <FlexBox class="columns" alignItems="Center" justifyContent="Center" height="90px">
+                        <FlexBox direction="Column" alignItems="Center" width="99%">
+                            <Label text="Descripción: " design="Bold" class="clsLetra" />
+                            <Label text="Soporte nivel 3 COE ANDINA AGOSTO" class="clsLetra" />
+                        </FlexBox>
+                    </FlexBox>
+                    <FlexBox id="idHboxAprobadores" direction="Column" alignItems="Center" justifyContent="Center" height="200px" items="{path: '/'}">
+                        <items>
+                            <layout:HorizontalLayout class="clsAprobHorizantalLayaout">
+                                <core:Icon src="{icon}" color="#EE122C" width="100%" class="sapUiContentPadding">
+                                    <core:layoutData>
+                                        <FlexItemData growFactor="1" />
+                                    </core:layoutData>
+                                </core:Icon>
+                                <Label text="{text}" design="Bold" class="clsLetra sapUiContentPadding clsaprob" width="100%" />
+                            </layout:HorizontalLayout>
+                        </items>
+                    </FlexBox>
+                    <FlexBox direction="Column" alignItems="Center" justifyContent="Center" height="150px">
+                        <Button id="idBtnLibPos" icon="sap-icon://flag" text="{i18n>liberar}" type="Negative" press="onLibPos" width="200px" />
+                    </FlexBox>
+                </Panel>
+            </Page>
+
+            <Page id="idDetailSolpedPc" showHeader="false" enableScrolling="true" class="sapUiContentPadding" showNavButton="false">
+                <uxap:ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" showEditHeaderButton="true" editHeaderButtonPress="handleEditBtnPress" upperCaseAnchorBar="false">
+                    <uxap:headerTitle>
+                        <uxap:ObjectPageDynamicHeaderTitle>
+                            <uxap:expandedHeading>
+                                <HBox>
+                                    <Button icon="sap-icon://nav-back" type="Emphasized" press="onPressMasterBack" />
+                                    <Title text="Administrador de negocios" wrapping="true" />
+                                </HBox>
+                            </uxap:expandedHeading>
+
+                            <uxap:snappedHeading>
+                                <FlexBox fitContainer="true" alignItems="Center">
+                                    <Button icon="sap-icon://nav-back" type="Emphasized" />
+                                    <Title text="Administrador de negocios" wrapping="true" />
+                                </FlexBox>
+                            </uxap:snappedHeading>
+                            <uxap:snappedContent>
+                                <Text text="45000916354" />
+                            </uxap:snappedContent>
+                            <uxap:expandedContent>
+                                <Text text="45000916354" />
+                            </uxap:expandedContent>
+                            <uxap:actions>
+                                <Button text="{i18n>lib}" icon="sap-icon://flag" type="Negative" id="btnLibDetail" press="onLiberar" />
+                            </uxap:actions>
+                        </uxap:ObjectPageDynamicHeaderTitle>
+                    </uxap:headerTitle>
+
+                    <uxap:headerContent>
+                        <Label id="label" displayOnly="true" wrapping="true" text="Labels are used as titles [long test word] forsinglecontrolsorgroups of controls. Label appearance can be influenced by properties" />
+                        <FlexBox class="columns" alignItems="Center" justifyContent="Center">
+                            <FlexBox direction="Column" alignItems="Center" width="33%">
+                                <Label text="Sociedad: " design="Bold" />
+                                <Label text="PE01" />
+                            </FlexBox>
+                            <FlexBox direction="Column" alignItems="Center" width="33%">
+                                <Label text="Fecha: " design="Bold" />
+                                <Label text="25/07/2016" />
+                            </FlexBox>
+                            <FlexBox direction="Column" alignItems="Center" width="33%">
+                                <Label text="Solicitante: " design="Bold" />
+                                <Label text="Oper Canales" />
+                            </FlexBox>
+                        </FlexBox>
+                    </uxap:headerContent>
+                    <uxap:sections>
+                        <uxap:ObjectPageSection titleUppercase="false" id="idSecPos" title="{i18n>posiciones}">
+                            <uxap:subSections>
+                                <uxap:ObjectPageSubSection id="goalsSectionSS1">
+                                    <uxap:blocks>
+                                        <Table id="idTblPosiciones" inset="false" items="{path: '/'}">
+                                            <columns>
+                                                <Column width="12em">
+                                                    <Text text="{i18n>nroPosicion}" />
+                                                </Column>
+                                                <Column minScreenWidth="Tablet" demandPopin="true">
+                                                    <Text text="{i18n>monto}" />
+                                                </Column>
+                                                <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                                    <Text text="{i18n>fechaPos}" />
+                                                </Column>
+                                                <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                                    <Text text="{i18n>material}" />
+                                                </Column>
+                                                <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                                    <Text text="{i18n>grparticulo}" />
+                                                </Column>
+                                                <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                                    <Text text="{i18n>cantUnmed}" />
+                                                </Column>
+                                                <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                                    <Text text="{i18n>descripcion}" />
+                                                </Column>
+                                            </columns>
+                                            <items>
+                                                <ColumnListItem vAlign="Middle">
+                                                    <cells>
+                                                        <Text text="{pos}" />
+                                                        <Text text="{importe} {currency}" />
+                                                        <Text text="{fecha}" />
+                                                        <Text text="{material}" />
+                                                        <Text text="{grpArticulos}" />
+                                                        <Text text="{mesure} {unit}" />
+                                                        <Text text="{descripcion}" />
+                                                    </cells>
+                                                </ColumnListItem>
+                                            </items>
+                                        </Table>
+                                    </uxap:blocks>
+                                </uxap:ObjectPageSubSection>
+                            </uxap:subSections>
+                        </uxap:ObjectPageSection>
+                    </uxap:sections>
+                </uxap:ObjectPageLayout>
+                <footer>
+                    <OverflowToolbar id="idOfToolbar2">
+                        <ToolbarSpacer id="idToolSpacer2" />
+                        <Button id="idBtnLibera2r" icon="sap-icon://flag" text="{i18n>liberar}" press="onLiberar" type="Negative" />
+                    </OverflowToolbar>
+                </footer>
+            </Page>
+        </detailPages>
+        <masterPages>
+            <Page id="master" title="{i18n>title}" backgroundDesign="List">
+                <List id="idListOC" mode="MultiSelect" items="{path: '/'}" includeItemInSelection="false">
+                    <items>
+                        <ObjectListItem
+                            title="{documento}"
+                            type="Navigation"
+                            press="onPressOC"
+                            number="{
+                                            parts:[{path:'importe'},{path:'currency'}],
+                                            type: 'sap.ui.model.type.Currency',
+                                            formatOptions: {showMeasure: false}
+                                        }"
+                            numberUnit="{currency}"
+                        >
+                            <ObjectAttribute textDirection="LTR" text="{usuario}" />
+                            <ObjectAttribute text="{proveedor}" />
+                            <!-- <ObjectAttribute textDirection="RTL" text="{fecha}" /> -->
+                            <firstStatus>
+                                <ObjectStatus text="{fecha}" />
+                            </firstStatus>
+                        </ObjectListItem>
+                    </items>
+                </List>
+                <footer>
+                    <OverflowToolbar id="idOfToolbar">
+                        <ToolbarSpacer id="idToolSpacer" />
+                        <Button id="idBtnLiberar" icon="sap-icon://flag" type="Negative" text="{i18n>liberar}" press="onLiberar" />
+                    </OverflowToolbar>
+                </footer>
+            </Page>
+        </masterPages>
+    </SplitApp>
+</mvc:View>

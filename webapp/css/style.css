@@ -1,0 +1,29 @@
+/* Enter your custom styles here */
+.clsLetra{
+    font-size: 15px;
+}
+.clsLetraDet1{
+    font-size: 20px; 
+}
+.clsTitulo{
+    color:#EE122C;
+    font-size: 25px;
+}
+
+.clsaprob{
+    margin-left: 40px;
+}
+.clsAprobHorizantalLayaout{
+    padding: 12px;
+}
+.clsListPos{
+    padding: 1%;
+    margin-bottom: 50px;
+}
+.clsDetalleCab{
+    padding: 35px;
+    font-size: 25px;
+}
+.clsTextDesc{
+    margin-top: 15px;
+}
